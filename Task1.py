@@ -29,6 +29,12 @@ import heapq
 import sys
 from collections import deque
 
+def get_cost(path):
+    ucs_total_cost = 0
+    for i in range(len(path) -1):
+        ucs_total_cost += cost[f"{path[i]},{path[i+1]}"]
+    return ucs_total_cost
+
 def dijkstras(start_node, end_node):
     unvisited_nodes = list(combine_graph.keys())
     distance_from_start = {
@@ -71,3 +77,4 @@ for i, p in enumerate(dijkstras_path):
         print(p, end='->')
 print()
 print(f"Shortest distance: {dijkstras_shortest_dist}")
+print(f"Total energy cost: {get_cost(dijkstras_path)}")
